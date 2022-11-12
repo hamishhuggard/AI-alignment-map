@@ -1,0 +1,17 @@
+* {
+    box-sizing: border-box;
+}
+
+.center {
+    display: grid;
+    place-items: center;
+}
+
+body {
+    margin: 0;
+
+    /* grid background */
+    width: 100vw;
+    height: 100vh;
+}
+
