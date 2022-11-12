@@ -85,10 +85,6 @@ function Scatterplot(data, {
       .attr("cy", i => yScale(Y[i]))
       .attr("r", r);
 
-  console.log($('circle'));
-  $('circle').draggable();
-  $('text').draggable();
-
 }
 
 let sheetUrl = 'content.csv'
@@ -99,8 +95,8 @@ d3.csv(sheetUrl).then(function(data) {
 console.table(data);
 
 chart = Scatterplot(data, {
-  x: d => d['x random'],
-  y: d => d['y random'],
+  x: d => parseFloat( d['x random'] ),
+  y: d => parseFloat( d['y random'] ),
   title: d => d['Label'],
   xLabel: "x →",
   yLabel: "↑ y",
