@@ -95,8 +95,8 @@ d3.csv(sheetUrl).then(function(data) {
 console.table(data);
 
 chart = Scatterplot(data, {
-  x: d => parseFloat( d['x random'] ),
-  y: d => parseFloat( d['y random'] ),
+  x: d => parseFloat( d['x'] ),
+  y: d => parseFloat( d['y'] ),
   title: d => d['Label'],
   xLabel: "x →",
   yLabel: "↑ y",
