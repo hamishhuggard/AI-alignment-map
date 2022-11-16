@@ -17,21 +17,21 @@ d3.csv(sheetUrl).then(function(data) {
 
     console.log(xScale(0), yScale(0), xDomain, yDomain);
 
-    const divs = d3.select("#map2")
+    const divs = d3.select("#map")
         .selectAll('div')
         .data(data)
         .enter()
         .append('div')
-        .attr('style', d => 
-            `position: absolute; left: ${xScale(d.x)}%; top: ${yScale(d.y)}%; transform: translateX(-50%);`
-        )
+        .style('position', 'absolute')
+        .style('left', d => `${xScale(d.x)}%`)
+        .style('top', d => `${yScale(d.y)}%`)
+        .style('transform', 'translateX(-50%)')
         .attr('class', 'draggable')
+        .classed('map-item', true)
     divs
             .append('img')
             .attr('src', d => d.logo)
             .attr('width', '30px')
-    divs
-            .append('br')
     divs
             .append('a')
             .attr('href', d => d.Link)

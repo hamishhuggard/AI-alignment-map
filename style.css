@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Sono:wght@400&display=swap');
+
 * {
     box-sizing: border-box;
 }
@@ -13,5 +15,26 @@ body {
     /* grid background */
     width: 100vw;
     height: 100vh;
+    /* background: #d3d3d3; */
 }
 
+circle {
+    fill: #6D597A;
+    opacity: 0.5;
+}
+
+a {
+    font-family:  'Sono', sans-serif;
+    text-decoration: none;
+    color: black;
+}
+
+.map-item img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.map-item:hover {
+    filter: drop-shadow(0 0 0.75rem crimson);
+}
