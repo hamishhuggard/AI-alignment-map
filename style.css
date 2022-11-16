@@ -35,6 +35,11 @@ a {
     margin-right: auto;
 }
 
+.map-item {
+    transition: all .2s ease-in-out; 
+}
+
 .map-item:hover {
     filter: drop-shadow(0 0 0.75rem crimson);
+    scale: 1.5; 
 }
