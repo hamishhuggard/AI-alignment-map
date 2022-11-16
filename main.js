@@ -12,7 +12,7 @@ d3.csv(sheetUrl).then(function(data) {
     const Y = d3.map(data, d=>d.y);
     const xDomain = d3.extent(X);
     const yDomain = d3.extent(Y);
-    const xScale = d3.scaleLinear(xDomain, [10,90]);
+    const xScale = d3.scaleLinear(xDomain, [5,80]);
     const yScale = d3.scaleLinear(yDomain, [10,90]);
 
     console.log(xScale(0), yScale(0), xDomain, yDomain);
@@ -25,7 +25,6 @@ d3.csv(sheetUrl).then(function(data) {
         .style('position', 'absolute')
         .style('left', d => `${xScale(d.x)}%`)
         .style('top', d => `${yScale(d.y)}%`)
-        .style('transform', 'translateX(-50%)')
         .attr('class', 'draggable')
         .classed('map-item', true)
     divs
