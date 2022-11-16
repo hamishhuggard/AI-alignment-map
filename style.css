@@ -42,6 +42,7 @@ a {
 }
 
 .map-item:hover {
-    filter: drop-shadow(0 0 0.75rem crimson);
+    filter: drop-shadow(0 0 0.75rem white) drop-shadow(0 0 0.75rem white) drop-shadow(0 0 0.75rem white) drop-shadow(0 0 0.75rem white);
     scale: 1.5; 
+    z-index: 100;
 }
