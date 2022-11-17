@@ -33,7 +33,7 @@ a {
     margin-right: auto;
 }
 
-.map-item a {
+.map-item {
    text-align: center;
 }
 
@@ -45,4 +45,48 @@ a {
     filter: drop-shadow(0 0 0.75rem white) drop-shadow(0 0 0.75rem white) drop-shadow(0 0 0.75rem white) drop-shadow(0 0 0.75rem white);
     scale: 1.5; 
     z-index: 100;
+}
+
+#map {
+    display: grid;
+    padding: 20px;
+    grid-template-columns: 2fr 3fr;
+    width: 100vw;
+    height: 100vh;
+    gap: 10px;
+}
+
+#left {
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr 1fr;
+    gap: 10px;
+}
+
+#comms {
+    background: rgba(0, 128, 0, 0.3);
+}
+
+#training {
+    background: rgba(0, 128, 0, 0.3);
+}
+
+#funding {
+    background: rgba(0, 128, 0, 0.3);
+}
+
+#support {
+    background: rgba(0, 128, 0, 0.3);
+}
+
+#research {
+    background: rgba(0, 128, 0, 0.3);
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.category {
+    padding: 20px;
+    border-radius: 5px;
+    display: grid;
+    gap: 5px;
+    grid-template-columns: repeat(3, 1fr);
 }

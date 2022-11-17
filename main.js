@@ -15,30 +15,36 @@ d3.csv(sheetUrl).then(function(data) {
     const xScale = d3.scaleLinear(xDomain, [5,80]);
     const yScale = d3.scaleLinear(yDomain, [10,90]);
 
-    console.log(xScale(0), yScale(0), xDomain, yDomain);
+    const sections = new Set(d3.map(data, d=>d.section));
 
-    const divs = d3.select("#map")
-        .selectAll('div')
+    let divs = d3.select("#map")
+        .selectAll('a')
         .data(data)
         .enter()
+        .append('div');
+
+    let anchors = divs
         .append('a')
-        .attr('href', d => d.Link)
-        .attr('target', '_blank')
-        .style('position', 'absolute')
-        .style('left', d => `${xScale(d.x)}%`)
-        .style('top', d => `${yScale(d.y)}%`)
-        .attr('class', 'draggable')
-        .classed('map-item', true)
-    divs
+            .attr('href', d => d.Link)
+            .attr('target', '_blank')
+            .classed('map-item', true);
+
+    anchors
         .append('img')
         .attr('src', d => d.logo)
-        .attr('width', '30px')
-    divs
+        .attr('width', '30px');
+
+    anchors
         .append('div')
         .attr('title', d => d.Hovertext)
         .html(d => d.Label);
 
 
-    $( ".draggable" ).draggable();
+    let sectionAnchors;
+    for (let section of sections) {
+        sectionDivs = divs.filter(d => d.section === section);
+        $( sectionDivs.nodes() ).appendTo( $(`#${section}`) );
+    }
+
 
 });
