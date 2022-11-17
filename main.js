@@ -21,21 +21,22 @@ d3.csv(sheetUrl).then(function(data) {
         .selectAll('div')
         .data(data)
         .enter()
-        .append('div')
+        .append('a')
+        .attr('href', d => d.Link)
+        .attr('target', '_blank')
         .style('position', 'absolute')
         .style('left', d => `${xScale(d.x)}%`)
         .style('top', d => `${yScale(d.y)}%`)
         .attr('class', 'draggable')
         .classed('map-item', true)
     divs
-            .append('img')
-            .attr('src', d => d.logo)
-            .attr('width', '30px')
+        .append('img')
+        .attr('src', d => d.logo)
+        .attr('width', '30px')
     divs
-            .append('a')
-            .attr('href', d => d.Link)
-            .attr('title', d => d.Hovertext)
-            .html(d => d.Label);
+        .append('div')
+        .attr('title', d => d.Hovertext)
+        .html(d => d.Label);
 
 
     $( ".draggable" ).draggable();
