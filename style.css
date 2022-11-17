@@ -80,7 +80,6 @@ a {
 
 #research {
     background: rgba(0, 128, 0, 0.3);
-    grid-template-columns: repeat(5, 1fr);
 }
 
 .category {
@@ -88,5 +87,5 @@ a {
     border-radius: 5px;
     display: grid;
     gap: 5px;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, 100px);
 }
