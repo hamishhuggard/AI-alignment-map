@@ -31,6 +31,8 @@ a {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    max-width:  40px;
+    max-height: 40px;
 }
 
 .map-item {
@@ -58,7 +60,13 @@ a {
 
 #left {
     display: grid;
-    grid-template-rows: 1fr 2fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+#right {
+    display: grid;
+    grid-template-rows: 1fr 2.5fr;
     gap: 10px;
 }
 
@@ -87,5 +95,6 @@ a {
     border-radius: 5px;
     display: grid;
     gap: 5px;
-    grid-template-columns: repeat(auto-fill, 100px);
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-template-rows: repeat(auto-fill, 70px);
 }

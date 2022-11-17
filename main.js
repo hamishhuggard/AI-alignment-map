@@ -21,18 +21,18 @@ d3.csv(sheetUrl).then(function(data) {
         .selectAll('a')
         .data(data)
         .enter()
-        .append('div');
+        .append('div')
+        .classed('map-item', true)
+        .classed('center', true)
 
     let anchors = divs
         .append('a')
             .attr('href', d => d.Link)
             .attr('target', '_blank')
-            .classed('map-item', true);
 
     anchors
         .append('img')
         .attr('src', d => d.logo)
-        .attr('width', '30px');
 
     anchors
         .append('div')
