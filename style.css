@@ -62,33 +62,14 @@ a {
     }
 }
 
-#comms {
-    background: rgba(0, 128, 0, 0.3);
-}
-
-#training {
-    background: rgba(0, 128, 0, 0.3);
-}
-
-#funding {
-    background: rgba(0, 128, 0, 0.3);
-}
-
-#support {
-    background: rgba(0, 128, 0, 0.3);
-}
-
-#research {
-    background: rgba(0, 128, 0, 0.3);
-}
-
 .category {
     padding: 25px;
-    border-radius: 5px;
+    border-radius: 20px;
     display: grid;
     gap: 30px 15px;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    grid-template-rows: repeat(auto-fill, 70px);
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-template-rows: repeat(auto-fill, 80px);
+    background: rgba(100, 100, 100, 0.3);
 }
 
 .category-heading {
@@ -98,4 +79,19 @@ a {
 
 .title {
     font-size: 1.6em;
+}
+
+.logo-div {
+    width: 100%;
+    height: 40px;
+}
+
+.logo-title-divider {
+    height: 5px;
+    width: 100%;
+}
+
+.logo-title {
+    height: 40px;
+    width: 120px;
 }

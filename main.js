@@ -31,12 +31,18 @@ d3.csv(sheetUrl).then(function(data) {
             .attr('target', '_blank')
 
     anchors
+        .append('div')
+        .classed('logo-div', true)
         .append('img')
-        .attr('src', d => d.logo)
+        .attr('src', d => d.logo);
 
     anchors
         .append('div')
-        .attr('title', d => d.Hovertext)
+        .classed('logo-title-divider', true);
+
+    anchors
+        .append('div')
+        .classed('logo-title', true)
         .html(d => d.Label);
 
 
