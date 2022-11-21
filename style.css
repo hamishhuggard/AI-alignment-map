@@ -33,6 +33,7 @@ a {
 
 .map-item {
    text-align: center;
+   overflow: visible;
 }
 
 .map-item {
@@ -69,7 +70,7 @@ a {
     gap: 30px 15px;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     grid-template-rows: repeat(auto-fill, 80px);
-    background: rgba(100, 100, 100, 0.3);
+    background: rgba(100,100,100,0.1);
 }
 
 .category-heading {
@@ -91,7 +92,11 @@ a {
     width: 100%;
 }
 
-.logo-title {
+.short-name {
     height: 40px;
-    width: 120px;
+    width: 100%;
+}
+
+.long-name {
+    width: 200px;
 }

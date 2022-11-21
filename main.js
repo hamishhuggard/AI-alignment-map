@@ -23,7 +23,6 @@ d3.csv(sheetUrl).then(function(data) {
         .enter()
         .append('div')
         .classed('map-item', true)
-        .classed('center', true)
 
     let anchors = divs
         .append('a')
@@ -42,7 +41,13 @@ d3.csv(sheetUrl).then(function(data) {
 
     anchors
         .append('div')
-        .classed('logo-title', true)
+        .classed('short-name', true)
+        .html(d => d.Label);
+
+    anchors
+        .append('div')
+        .classed('long-name', true)
+        .style('display', 'none')
         .html(d => d.Label);
 
 
