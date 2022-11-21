@@ -23,6 +23,13 @@ d3.csv(sheetUrl).then(function(data) {
         .enter()
         .append('div')
         .classed('map-item', true)
+        .on('mouseover', function(d){
+            d3.select(this).classed('hovered', true)
+        })
+        .on('mouseleave', function(d){
+            d3.select(this).classed('hovered', false)
+        })
+
 
     let anchors = divs
         .append('a')
@@ -41,14 +48,18 @@ d3.csv(sheetUrl).then(function(data) {
 
     anchors
         .append('div')
-        .classed('short-name', true)
+        .classed('short-label', true)
         .html(d => d.Label);
 
     anchors
         .append('div')
-        .classed('long-name', true)
-        .style('display', 'none')
-        .html(d => d.Label);
+        .classed('long-label', true)
+        .html(d => d.LongLabel);
+
+    anchors
+        .append('div')
+        .classed('description', true)
+        .html(d => d.Description);
 
 
     let sectionAnchors;

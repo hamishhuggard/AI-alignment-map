@@ -34,6 +34,7 @@ a {
 .map-item {
    text-align: center;
    overflow: visible;
+   height: 80px;
 }
 
 .map-item {
@@ -92,11 +93,30 @@ a {
     width: 100%;
 }
 
-.short-name {
-    height: 40px;
+.short-label {
     width: 100%;
+    display: block;
 }
 
-.long-name {
-    width: 200px;
+.hovered .short-label {
+    display: none;
+}
+
+.long-label {
+    width: 160px;
+    transform: translateX(-10px);
+    display: none;
+}
+
+.hovered .long-label {
+    display: block;
+}
+
+.description {
+    display: none;
+    font-size: 0.5em;
+}
+
+.hovered .description {
+    display: block;
 }
