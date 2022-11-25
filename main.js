@@ -10,6 +10,9 @@ d3.csv(sheetUrl).then(function(data) {
     delete data['columns'];
     console.table(data);
 
+    // delete hidden rows
+    data = data.filter(d => d.hide != 'x');
+
     data.map(function(d) {d.x = parseFloat(d.x); d.y = parseFloat(d.y)});
 
     const X = d3.map(data, d=>d.x);
