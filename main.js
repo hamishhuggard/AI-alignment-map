@@ -1,3 +1,7 @@
+// I’d put a red dot on OpenAI and DeepMind to flag that a significant share of their work is likely to be net negative for X-risks. 
+// Try to be less casual in the presentation of researchers/organizations aswell because this page could really be quite legible.
+
+
 let sheetUrl = 'content.csv'
 sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRRUv6PC5hC4-VXzQy75DBeywJaiQjU7MPGOoZBat9iJCmQo9Pf0nc2nvAFDfRJmP06WHJEls4RgUw6/pub?gid=1173866196&single=true&output=csv'
 
@@ -15,7 +19,32 @@ d3.csv(sheetUrl).then(function(data) {
     const xScale = d3.scaleLinear(xDomain, [5,80]);
     const yScale = d3.scaleLinear(yDomain, [10,90]);
 
-    const sections = new Set(d3.map(data, d=>d.section));
+    const sections = [];
+    new Set(d3.map(data, d=>d.section)).forEach(x =>
+        sections.push(
+        {
+            title: x,
+            id: x.split(' ')[0].toLowerCase()
+        }
+        )
+    );
+    console.log(sections);
+
+    let sectionDivs = d3.select("#map")
+        .selectAll('div')
+        .data(sections)
+        .enter()
+        .append('div');
+
+    sectionDivs
+        .append('div')
+        .classed('category-heading', true)
+        .html(d => d.title);
+
+    sectionDivs
+        .append('div')
+        .classed('category', true)
+        .attr('id', d => d.id);
 
     let divs = d3.select("#map")
         .selectAll('a')
@@ -64,8 +93,8 @@ d3.csv(sheetUrl).then(function(data) {
 
     let sectionAnchors;
     for (let section of sections) {
-        sectionDivs = divs.filter(d => d.section === section);
-        $( sectionDivs.nodes() ).appendTo( $(`#${section}`) );
+        sectionDivs = divs.filter(d => d.section === section.title);
+        $( sectionDivs.nodes() ).appendTo( $(`#${section.id}`) );
     }
 
 
