@@ -28,7 +28,6 @@ d3.csv(sheetUrl).then(function(data) {
         }
         )
     );
-    console.log(sections);
 
     let sectionDivs = d3.select("#map")
         .selectAll('div')
@@ -96,6 +95,5 @@ d3.csv(sheetUrl).then(function(data) {
         sectionDivs = divs.filter(d => d.section === section.title);
         $( sectionDivs.nodes() ).appendTo( $(`#${section.id}`) );
     }
-
 
 });
