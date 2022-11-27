@@ -52,7 +52,7 @@ a {
     flex-direction: column;
     gap: 10px;
     padding: 20px;
-    width: 700px;
+    max-width: 700px;
     box-sizing: border-box;
     padding-top: 80px;
     padding-bottom: 80px;
