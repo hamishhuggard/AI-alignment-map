@@ -7,6 +7,8 @@ sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRRUv6PC5hC4-VXzQy75
 
 d3.csv(sheetUrl).then(function(data) {
 
+    d3.select('#loading').remove();
+
     delete data['columns'];
     console.table(data);
 
@@ -22,6 +24,12 @@ d3.csv(sheetUrl).then(function(data) {
     const xScale = d3.scaleLinear(xDomain, [5,80]);
     const yScale = d3.scaleLinear(yDomain, [10,90]);
 
+    const subcat2section = {};
+    data.forEach(x => {
+        subcat2section[x.section] = x.category;
+    })
+    console.log(subcat2section);
+
     const sections = [];
     new Set(d3.map(data, d=>d.section)).forEach(x =>
         sections.push(
@@ -33,6 +41,12 @@ d3.csv(sheetUrl).then(function(data) {
     );
 
     let sectionDivs = d3.select("#map")
+        .selectAll('div')
+        .data(sections)
+        .enter()
+        .append('div');
+
+    let sectionDivs2 = d3.select("#map")
         .selectAll('div')
         .data(sections)
         .enter()
@@ -93,7 +107,6 @@ d3.csv(sheetUrl).then(function(data) {
         .html(d => d.Description);
 
 
-    let sectionAnchors;
     for (let section of sections) {
         sectionDivs = divs.filter(d => d.section === section.title);
         $( sectionDivs.nodes() ).appendTo( $(`#${section.id}`) );

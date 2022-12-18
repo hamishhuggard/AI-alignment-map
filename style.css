@@ -21,6 +21,7 @@ body {
 a {
     text-decoration: none;
     color: black;
+    background: rgba(255,255,255,0.95);
 }
 
 .map-item img {
