@@ -32,20 +32,30 @@ a {
     max-height: 40px;
 }
 
-.map-item {
-   text-align: center;
+.grid-slot {
    overflow: visible;
-   height: 80px;
+   height: 40px;
 }
 
 .map-item {
-    transition: all .2s ease-in-out; 
+   text-align: center;
+   transition: all .2s ease-in-out; 
 }
 
 .map-item:hover {
-    filter: drop-shadow(0 0 0.75rem white) drop-shadow(0 0 0.75rem white) drop-shadow(0 0 0.75rem white) drop-shadow(0 0 0.75rem white);
     scale: 1.5; 
     z-index: 100;
+    width: 160px;
+}
+
+.details {
+   background: rgba(255, 255, 255, 0);
+   border-radius: 10px;
+   padding: 10px;
+}
+
+.hovered .details {
+    background: rgba(255, 255, 255, 1);
 }
 
 #main {
@@ -80,6 +90,7 @@ a {
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     grid-template-rows: repeat(auto-fill, 80px);
     background: rgba(100,100,100,0.1);
+    overflow: visible;
 }
 
 .category-heading {
@@ -111,9 +122,9 @@ a {
 }
 
 .long-label {
-    width: 160px;
-    transform: translateX(-10px);
+    width: 130px;
     display: none;
+    font-size: 0.8em;
 }
 
 .hovered .long-label {

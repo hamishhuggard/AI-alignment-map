@@ -1,5 +1,4 @@
 // I’d put a red dot on OpenAI and DeepMind to flag that a significant share of their work is likely to be net negative for X-risks. 
-// Try to be less casual in the presentation of researchers/organizations aswell because this page could really be quite legible.
 
 
 let sheetUrl = 'content.csv'
@@ -62,10 +61,11 @@ d3.csv(sheetUrl).then(function(data) {
         .classed('category', true)
         .attr('id', d => d.id);
 
-    let divs = d3.select("#map")
-        .selectAll('a')
+    const divs = d3.select("#map")
         .data(data)
         .enter()
+        .append('div')
+        .classed('grid-slot', true)
         .append('div')
         .classed('map-item', true)
         .on('mouseover', function(d){
@@ -76,7 +76,7 @@ d3.csv(sheetUrl).then(function(data) {
         })
 
 
-    let anchors = divs
+    const anchors = divs
         .append('a')
             .attr('href', d => d.Link)
             .attr('target', '_blank')
@@ -87,21 +87,21 @@ d3.csv(sheetUrl).then(function(data) {
         .append('img')
         .attr('src', d => d.logo);
 
-    anchors
+    const details = anchors
         .append('div')
-        .classed('logo-title-divider', true);
+        .classed('details', true)
 
-    anchors
+    details
         .append('div')
         .classed('short-label', true)
         .html(d => d.Label);
 
-    anchors
+    details
         .append('div')
         .classed('long-label', true)
         .html(d => d.LongLabel);
 
-    anchors
+    details
         .append('div')
         .classed('description', true)
         .html(d => d.Description);
