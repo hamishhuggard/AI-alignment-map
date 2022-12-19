@@ -9,12 +9,13 @@ d3.csv(sheetUrl).then(function(data) {
     d3.select('#loading').remove();
 
     delete data['columns'];
-    console.table(data);
 
     // delete hidden rows
     data = data.filter(d => d.hide != 'x');
 
     data.map(function(d) {d.x = parseFloat(d.x); d.y = parseFloat(d.y)});
+
+    console.table(data);
 
     const X = d3.map(data, d=>d.x);
     const Y = d3.map(data, d=>d.y);
@@ -61,11 +62,13 @@ d3.csv(sheetUrl).then(function(data) {
         .classed('category', true)
         .attr('id', d => d.id);
 
-    const divs = d3.select("#map")
+    const gridSlots = d3.select("#map")
         .data(data)
         .enter()
         .append('div')
         .classed('grid-slot', true)
+
+    const divs = gridSlots
         .append('div')
         .classed('map-item', true)
         .on('mouseover', function(d){
@@ -81,15 +84,16 @@ d3.csv(sheetUrl).then(function(data) {
             .attr('href', d => d.Link)
             .attr('target', '_blank')
 
-    anchors
+    const details = anchors
+        .append('div')
+        .classed('details', true)
+
+    details
         .append('div')
         .classed('logo-div', true)
         .append('img')
         .attr('src', d => d.logo);
 
-    const details = anchors
-        .append('div')
-        .classed('details', true)
 
     details
         .append('div')
@@ -108,7 +112,7 @@ d3.csv(sheetUrl).then(function(data) {
 
 
     for (let section of sections) {
-        sectionDivs = divs.filter(d => d.section === section.title);
+        sectionDivs = gridSlots.filter(d => d.section === section.title);
         $( sectionDivs.nodes() ).appendTo( $(`#${section.id}`) );
     }
 

@@ -34,7 +34,7 @@ a {
 
 .grid-slot {
    overflow: visible;
-   height: 40px;
+   max-height: 80px;
 }
 
 .map-item {
@@ -86,7 +86,7 @@ a {
     padding: 25px;
     border-radius: 20px;
     display: grid;
-    gap: 30px 15px;
+    gap: 30px 30px;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     grid-template-rows: repeat(auto-fill, 80px);
     background: rgba(100,100,100,0.1);
