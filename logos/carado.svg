@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="256"
+   height="256"
+   viewBox="0 0 256 256"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.1 (c4e8f9ed74, 2021-05-24)"
+   sodipodi:docname="new-3.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs2">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath4414">
+      <rect
+         style="fill:#000000;fill-opacity:0;stroke:none;stroke-width:2;stroke-linejoin:round;stroke-dasharray:2, 2"
+         id="rect4416"
+         width="256"
+         height="256"
+         x="0"
+         y="0" />
+    </clipPath>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.979899"
+     inkscape:cx="91.166267"
+     inkscape:cy="157.07872"
+     inkscape:document-units="px"
+     inkscape:current-layer="g4308"
+     inkscape:pagecheckerboard="0"
+     showgrid="true"
+     inkscape:window-width="1440"
+     inkscape:window-height="892"
+     inkscape:window-x="900"
+     inkscape:window-y="502"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid40"
+       empspacing="8" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g4308"
+       clip-path="url(#clipPath4414)">
+      <rect
+         style="fill:#5daf8d;fill-opacity:1;stroke:none;stroke-width:2;stroke-linejoin:round;stroke-dasharray:2, 2"
+         id="rect1175"
+         width="256"
+         height="256"
+         x="0"
+         y="0" />
+      <path
+         style="fill:#e86a73;fill-opacity:1;stroke:none;stroke-width:2;stroke-linejoin:round;stroke-dasharray:2, 2"
+         d="m 0,184 c 128,-80 128,16 256,-64 V 72 C 128,152 128,56 0,136 Z"
+         id="path1958-3-6"
+         sodipodi:nodetypes="ccccc" />
+      <circle
+         style="fill:#c4c9fa;fill-opacity:1;stroke:none;stroke-width:2;stroke-linejoin:round;stroke-dasharray:2, 2"
+         id="path1689"
+         cx="128"
+         cy="128"
+         r="88" />
+      <rect
+         style="fill:#403353;fill-opacity:1;stroke:none;stroke-width:2;stroke-linejoin:round;stroke-dasharray:2, 2"
+         id="rect1793"
+         width="48"
+         height="16"
+         x="64"
+         y="120" />
+      <rect
+         style="fill:#403353;fill-opacity:1;stroke:none;stroke-width:2;stroke-linejoin:round;stroke-dasharray:2, 2"
+         id="rect1817"
+         width="48"
+         height="16"
+         x="144"
+         y="120" />
+      <path
+         style="fill:#e86a73;fill-opacity:1;stroke:none;stroke-width:2;stroke-linejoin:round;stroke-dasharray:2, 2"
+         d="m 0,256 c 128,-80 128,16 256,-64 V 152 C 128,232 128,136 0,216 Z"
+         id="path1958"
+         sodipodi:nodetypes="ccccc" />
+      <path
+         style="fill:#e86a73;fill-opacity:1;stroke:none;stroke-width:2;stroke-linejoin:round;stroke-dasharray:2, 2"
+         d="M 0,104 C 128,24 128,120 256,40 V 0 C 128,80 128,-16 0,64 Z"
+         id="path1958-3"
+         sodipodi:nodetypes="ccccc" />
+      <rect
+         style="fill:#000000;fill-opacity:0;stroke:none;stroke-width:2;stroke-linejoin:round;stroke-dasharray:2, 2"
+         id="rect4082"
+         width="256"
+         height="256"
+         x="0"
+         y="0" />
+    </g>
+  </g>
+</svg>
