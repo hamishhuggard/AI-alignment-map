@@ -78,16 +78,20 @@ d3.csv(sheetUrl).then(function(data) {
 
 });
 
-/*
-function getPositions() {
-    const results = []
-    const mapItems = d3.selectAll('.map-item')
-    new Array(mapItems).map(d => 
-        results.push({
-            y: d3.select(d).style('top'),
-            x: d3.select(d).style('left')
-        })
-    )
-    console.table(results)
+function logPositions() {
+    const x = []
+    const y = []
+    d3.selectAll('.map-item').each(function() {
+        y.push(d3.style(this, 'top').slice(0,-1))
+        x.push(d3.style(this, 'left').slice(0,-1))
+    });
+    console.log('x positions\n')
+    console.log(x.join('\n'));
+    console.log('y positions\n')
+    console.log(y.join('\n'));
 }
-*/
+document.addEventListener('keydown', function(event) {
+    if (event.key === ' ') {
+        logPositions()
+    }
+});
