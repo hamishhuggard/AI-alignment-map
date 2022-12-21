@@ -23,8 +23,10 @@ d3.csv(sheetUrl).then(function(data) {
     const ys = d3.map(data, d=>d.y);
     const xDomain = d3.extent(xs);
     const yDomain = d3.extent(ys);
-    const xScale = d3.scaleLinear(xDomain, [0,100]);
-    const yScale = d3.scaleLinear(yDomain, [0,100]);
+    //const xScale = d3.scaleLinear(xDomain, [200,1800]);
+    //const yScale = d3.scaleLinear(yDomain, [0,1200]);
+    const xScale = d3.scaleLinear([0,1], [0,1]);
+    const yScale = d3.scaleLinear([0,1], [0,1]);
 
     const divs = d3.select("#map")
         .selectAll("div")
@@ -39,8 +41,8 @@ d3.csv(sheetUrl).then(function(data) {
             d3.select(this).classed('hovered', false)
         })
         .style('position', 'absolute')
-        .style('top', d => `${yScale(d.y)}%`)
-        .style('left', d => `${xScale(d.x)}%`)
+        .style('top', d => `${yScale(d.y)}px`)
+        .style('left', d => `${xScale(d.x)}px`)
         .style('scale', d => d.scale/10)
 
     const anchors = divs
@@ -82,8 +84,8 @@ function logPositions() {
     const x = []
     const y = []
     d3.selectAll('.map-item').each(function() {
-        y.push(d3.style(this, 'top').slice(0,-1))
-        x.push(d3.style(this, 'left').slice(0,-1))
+        y.push(d3.style(this, 'top').replace('px',''))
+        x.push(d3.style(this, 'left').replace('px',''))
     });
     console.log('x positions\n')
     console.log(x.join('\n'));

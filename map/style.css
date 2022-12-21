@@ -135,12 +135,10 @@ a {
 }
 
 #background-img {
-    max-width: 100vw;
-    max-height: 100vh;
+    width: 2000px;
     position: absolute;
-    top: 50vh;
-    left: 50vw;
-    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
 }
 
 #map {
