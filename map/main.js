@@ -41,7 +41,7 @@ d3.csv(sheetUrl).then(function(data) {
         .style('position', 'absolute')
         .style('top', d => `${yScale(d.y)}%`)
         .style('left', d => `${xScale(d.x)}%`)
-        .style('scale', d => d.scale)
+        .style('scale', d => d.scale/10)
 
     const anchors = divs
         .append('a')
@@ -77,3 +77,17 @@ d3.csv(sheetUrl).then(function(data) {
     $('.map-item').draggable();
 
 });
+
+/*
+function getPositions() {
+    const results = []
+    const mapItems = d3.selectAll('.map-item')
+    new Array(mapItems).map(d => 
+        results.push({
+            y: d3.select(d).style('top'),
+            x: d3.select(d).style('left')
+        })
+    )
+    console.table(results)
+}
+*/
