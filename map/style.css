@@ -42,7 +42,7 @@ a {
    /*transition: all .2s ease-in-out; */
 }
 
-.map-item .hovered {
+.map-item.hovered {
     scale: 1.5; 
     z-index: 100;
     width: 160px;
@@ -136,6 +136,7 @@ a {
 
 #background-img {
     width: 2000px;
+    height: 1200px;
     position: absolute;
     top: 0;
     left: 0;

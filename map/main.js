@@ -34,9 +34,9 @@ d3.csv(sheetUrl).then(function(data) {
         .enter()
         .append('div')
         .classed('map-item', true)
-        //.on('mouseover', function(d){
-        //    d3.select(this).classed('hovered', true)
-        //})
+        .on('mouseover', function(d){
+            d3.select(this).classed('hovered', true)
+        })
         .on('mouseleave', function(d){
             d3.select(this).classed('hovered', false)
         })
