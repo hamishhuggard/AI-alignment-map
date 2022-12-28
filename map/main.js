@@ -1,8 +1,9 @@
 // Feedback:
 // I’d put a red dot on OpenAI and DeepMind to flag that a significant share of their work is likely to be net negative for X-risks. 
 
-let sheetUrl = 'content.csv'
-sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRRUv6PC5hC4-VXzQy75DBeywJaiQjU7MPGOoZBat9iJCmQo9Pf0nc2nvAFDfRJmP06WHJEls4RgUw6/pub?gid=1173866196&single=true&output=csv'
+let sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRRUv6PC5hC4-VXzQy75DBeywJaiQjU7MPGOoZBat9iJCmQo9Pf0nc2nvAFDfRJmP06WHJEls4RgUw6/pub?gid=1173866196&single=true&output=csv'
+
+let widthCache = 0;
 
 d3.csv(sheetUrl).then(function(data) {
 
@@ -28,6 +29,16 @@ d3.csv(sheetUrl).then(function(data) {
     const xScale = d3.scaleLinear([0,1], [0,1]);
     const yScale = d3.scaleLinear([0,1], [0,1]);
 
+    function getWidth(d) {
+        const npx = `${d.scale/10*80}px`;
+
+        // if the width is 200px then the widthCache breaks
+        if (npx === '200px')
+            return '200.5px';
+
+        return npx;
+    }
+
     const divs = d3.select("#map")
         .selectAll("div")
         .data(data)
@@ -35,15 +46,28 @@ d3.csv(sheetUrl).then(function(data) {
         .append('div')
         .classed('map-item', true)
         .on('mouseover', function(d){
-            d3.select(this).classed('hovered', true)
+            const currentWidth = d3.select(this).style('width');
+            if (currentWidth != '200px')
+                widthCache = currentWidth;
+            console.log('mouseover')
+            console.log({widthCache});
+            d3.select(this)
+                .classed('hovered', true)
+                .style('width', '200px')
         })
         .on('mouseleave', function(d){
-            d3.select(this).classed('hovered', false)
+            console.log('mouseleave')
+            console.log({widthCache})
+            d3.select(this)
+                .classed('hovered', false)
+                .style('width', widthCache)
         })
         .style('position', 'absolute')
         .style('top', d => `${yScale(d.y)}px`)
         .style('left', d => `${xScale(d.x)}px`)
-        .style('scale', d => d.scale/10)
+        .style('width', d => `${d.scale/10*80}px`)
+        .style('font-size', d => `${d.scale/10}em`)
+        .attr('id', d => d.id)
 
     const anchors = divs
         .append('a')
