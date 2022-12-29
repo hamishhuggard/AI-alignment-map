@@ -32,6 +32,7 @@ a {
     max-height: 100%;
 }
 
+
 .grid-slot {
    overflow: visible;
    max-height: 80px;
@@ -39,7 +40,7 @@ a {
 
 .map-item {
    text-align: center;
-   /*transition: all .2s ease-in-out; */
+   /*transition: all .2s ease-in-out;*/
 }
 
 .map-item.hovered {
@@ -47,13 +48,13 @@ a {
 }
 
 .details {
-   background: rgba(255, 255, 255, 0);
+   background: rgba(255, 255, 255, 0.7);
    border-radius: 10px;
    padding: 10px;
 }
 
 .hovered .details {
-    background: rgba(255, 255, 255, 1);
+    background: rgba(255, 255, 255, 0.95);
 }
 
 #main {
@@ -117,7 +118,7 @@ a {
 
 .long-label {
     display: none;
-    font-size: 0.8em;
+    font-size: 20px;
 }
 
 .hovered .long-label {
@@ -126,7 +127,7 @@ a {
 
 .description {
     display: none;
-    font-size: 0.5em;
+    font-size: 15px;
 }
 
 .hovered .description {

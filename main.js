@@ -3,6 +3,7 @@
 
 let sheetUrl = 'content.csv'
 sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRRUv6PC5hC4-VXzQy75DBeywJaiQjU7MPGOoZBat9iJCmQo9Pf0nc2nvAFDfRJmP06WHJEls4RgUw6/pub?gid=1173866196&single=true&output=csv'
+console.log(sheetUrl);
 
 d3.csv(sheetUrl).then(function(data) {
 
@@ -62,11 +63,16 @@ d3.csv(sheetUrl).then(function(data) {
         .classed('category', true)
         .attr('id', d => d.id);
 
+    console.table(data);
+    console.log(data);
+
     const gridSlots = d3.select("#map")
         .data(data)
         .enter()
         .append('div')
         .classed('grid-slot', true)
+
+    console.log(gridSlots);
 
     const divs = gridSlots
         .append('div')
@@ -77,7 +83,6 @@ d3.csv(sheetUrl).then(function(data) {
         .on('mouseleave', function(d){
             d3.select(this).classed('hovered', false)
         })
-
 
     const anchors = divs
         .append('a')

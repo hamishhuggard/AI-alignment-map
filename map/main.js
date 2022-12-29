@@ -46,21 +46,31 @@ d3.csv(sheetUrl).then(function(data) {
         .append('div')
         .classed('map-item', true)
         .on('mouseover', function(d){
-            const currentWidth = d3.select(this).style('width');
-            if (currentWidth != '200px')
-                widthCache = currentWidth;
-            console.log('mouseover')
-            console.log({widthCache});
-            d3.select(this)
+            const item = d3.select(this)
+            const width = item.style('width');
+
+            // a separate mouseover event occurs after the 
+            // size change which we want to ignore
+            if (width === '200px') return;
+
+            const leftShift = (200 - parseInt(width))/2;
+
+            console.log(item.style('left'))
+
+            widthCache = width;
+
+            item
                 .classed('hovered', true)
                 .style('width', '200px')
+                .style('left', parseInt(item.style('left'))-leftShift + 'px')
         })
         .on('mouseleave', function(d){
-            console.log('mouseleave')
-            console.log({widthCache})
-            d3.select(this)
+            const leftShift = (200 - parseInt(widthCache))/2;
+            const item = d3.select(this)
+            item
                 .classed('hovered', false)
                 .style('width', widthCache)
+                .style('left', parseInt(item.style('left'))+leftShift + 'px')
         })
         .style('position', 'absolute')
         .style('top', d => `${yScale(d.y)}px`)
