@@ -40,7 +40,9 @@ a {
 
 .map-item {
    text-align: center;
+   /*
    transition: all .2s ease-in-out;
+   */
 }
 
 .map-item.hovered {

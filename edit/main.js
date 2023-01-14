@@ -109,6 +109,7 @@ d3.csv(sheetUrl).then(function(data) {
         .classed('description', true)
         .html(d => d.Description);
 
+    $('.map-item').draggable();
 
 });
 
