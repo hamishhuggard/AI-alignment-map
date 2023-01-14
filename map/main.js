@@ -74,8 +74,9 @@ d3.csv(sheetUrl).then(function(data) {
         .style('position', 'absolute')
         .style('top', d => `${yScale(d.y)}px`)
         .style('left', d => `${xScale(d.x)}px`)
-        .style('width', d => `${d.scale/10*80}px`)
-        .style('font-size', d => `${d.scale/10}em`)
+        .style('width', d => `${Math.max(Math.sqrt(d.scale/10)*80,30)}px`)
+        .style('font-size', d => `${d.scale/12}em`)
+        .style('font-size', d => `${Math.max(Math.sqrt(d.scale/10)*10,5)}px`)
         .attr('id', d => d.id)
 
     divs
@@ -90,6 +91,8 @@ d3.csv(sheetUrl).then(function(data) {
     const details = anchors
         .append('div')
         .classed('details', true)
+        .style('padding', d => `${Math.max(d.scale/10*10,2)}px`)
+        .style('border-radius', d => `${Math.max(d.scale/10*10,2)}px`)
 
     details
         .append('div')
