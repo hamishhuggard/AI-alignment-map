@@ -78,6 +78,10 @@ d3.csv(sheetUrl).then(function(data) {
         .style('font-size', d => `${d.scale/10}em`)
         .attr('id', d => d.id)
 
+    divs
+        .filter(d => d.y > 880)
+        .classed('low-item', true)
+
     const anchors = divs
         .append('a')
             /*

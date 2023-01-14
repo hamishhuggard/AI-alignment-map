@@ -1,6 +1,3 @@
-// I’d put a red dot on OpenAI and DeepMind to flag that a significant share of their work is likely to be net negative for X-risks. 
-
-
 let sheetUrl = 'content.csv'
 sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRRUv6PC5hC4-VXzQy75DBeywJaiQjU7MPGOoZBat9iJCmQo9Pf0nc2nvAFDfRJmP06WHJEls4RgUw6/pub?gid=1173866196&single=true&output=csv'
 console.log(sheetUrl);
