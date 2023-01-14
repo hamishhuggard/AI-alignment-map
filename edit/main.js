@@ -80,7 +80,9 @@ d3.csv(sheetUrl).then(function(data) {
 
     const anchors = divs
         .append('a')
-            //.attr('href', d => d.Link)
+            /*
+            .attr('href', d => d.Link)
+            */
             .attr('target', '_blank')
 
     const details = anchors
