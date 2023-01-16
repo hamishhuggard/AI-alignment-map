@@ -139,3 +139,13 @@ a {
 .hovered .description {
     display: block;
 }
+
+#map-mode a {
+    color: #00cc00;
+    text-decoration-line: underline;
+    font-weight: bold;
+}
+
+#map-mode:hover {
+    font-size: 1.5em;
+}

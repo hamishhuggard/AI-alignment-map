@@ -154,3 +154,16 @@ a {
     width: 100vw;
     height: 100vh;
 }
+
+#tiles-mode a {
+    color: #00cc00;
+    text-decoration-line: underline;
+    font-weight: bold;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+}
+
+#tiles-mode:hover {
+    font-size: 1.5em;
+}
