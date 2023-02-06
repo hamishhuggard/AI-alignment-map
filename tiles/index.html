@@ -4,9 +4,11 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="icon" href="/map-assets/favicon.png" type="image/x-icon"> 
+        <link rel="icon" href="robot-head.png" type="image/x-icon"> 
         <title>AI Alignment and Governance Map</title>
         <link rel="stylesheet" href="style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
         <script src="https://d3js.org/d3.v6.js"></script>
         <script src="main.js" defer></script>
         
@@ -21,14 +23,13 @@
         </script>
     </head>
     <body class="center">
-        <div id="map">
-            <img id="background-img" src="/map-assets/background-v4.png"/>
-        </div>
         <div id="main">
-            <div id="main-title" class="title">The AI Alignment and Governance Landscape</div>
+            <div class="title">The AI Alignment and Governance Landscape</div>
             <div id="loading">loading...</div>
+            <div id="map-mode"><a href="/map/">Map mode</a></div>
+            <div id="map">
+            </div>
         </div>
-        <div id="tiles-mode"><a href="/tiles">Tiles mode</a></div>
     </body>
 </html>
 

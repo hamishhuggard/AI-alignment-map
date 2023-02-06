@@ -28,10 +28,9 @@ a {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    max-width:  100%;
-    max-height: 100%;
+    max-width:  40px;
+    max-height: 40px;
 }
-
 
 .grid-slot {
    overflow: visible;
@@ -40,26 +39,23 @@ a {
 
 .map-item {
    text-align: center;
-   transition: all .2s ease-in-out;
+   transition: all .2s ease-in-out; 
 }
 
-.map-item.hovered {
+.map-item:hover {
+    scale: 1.5; 
     z-index: 100;
-}
-
-.low-item.hovered {
-   transform: translateY(-70%);
+    width: 160px;
 }
 
 .details {
-   background: rgba(255, 255, 255, 0.7);
+   background: rgba(255, 255, 255, 0);
    border-radius: 10px;
    padding: 10px;
-   word-break: break-word;
 }
 
 .hovered .details {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 1);
 }
 
 #main {
@@ -71,6 +67,12 @@ a {
     box-sizing: border-box;
     padding-top: 80px;
     padding-bottom: 80px;
+}
+
+#map {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 @media only screen and (max-width: 700px) {
@@ -102,19 +104,17 @@ a {
 
 .logo-div {
     width: 100%;
+    height: 40px;
 }
 
 .logo-title-divider {
     height: 5px;
     width: 100%;
 }
+
 .short-label {
     width: 100%;
     display: block;
-}
-
-.hovered {
-    font-size: 1em;
 }
 
 .hovered .short-label {
@@ -122,8 +122,9 @@ a {
 }
 
 .long-label {
+    width: 130px;
     display: none;
-    font-size: 20px;
+    font-size: 0.8em;
 }
 
 .hovered .long-label {
@@ -132,38 +133,19 @@ a {
 
 .description {
     display: none;
-    font-size: 15px;
+    font-size: 0.5em;
 }
 
 .hovered .description {
     display: block;
 }
 
-#background-img {
-    width: 2000px;
-    height: 1200px;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-#map {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-}
-
-#tiles-mode a {
+#map-mode a {
     color: #00cc00;
     text-decoration-line: underline;
     font-weight: bold;
-    position: absolute;
-    left: 20px;
-    top: 20px;
 }
 
-#tiles-mode:hover {
+#map-mode:hover {
     font-size: 1.5em;
 }

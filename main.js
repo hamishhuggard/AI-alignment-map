@@ -1,11 +1,14 @@
 const sheetUrl = 'https://docs.google.com/spreadsheets/d/16CjyorSwrzVsMXtdHecuu-C6HWVYqjJbgwG0p3ZFlWg/export?format=csv&gid=1173866196&single=true&output=csv'
-console.log(sheetUrl);
+
+let widthCache = 0;
 
 d3.csv(sheetUrl).then(function(data) {
 
     d3.select('#loading').remove();
+    d3.select('#main-title').remove();
 
     delete data['columns'];
+    delete data[0];
 
     // delete hidden rows
     data = data.filter(d => d.hide != 'x');
@@ -14,71 +17,69 @@ d3.csv(sheetUrl).then(function(data) {
 
     console.table(data);
 
-    const X = d3.map(data, d=>d.x);
-    const Y = d3.map(data, d=>d.y);
-    const xDomain = d3.extent(X);
-    const yDomain = d3.extent(Y);
-    const xScale = d3.scaleLinear(xDomain, [5,80]);
-    const yScale = d3.scaleLinear(yDomain, [10,90]);
+    const xs = d3.map(data, d=>d.x);
+    const ys = d3.map(data, d=>d.y);
+    const xDomain = d3.extent(xs);
+    const yDomain = d3.extent(ys);
+    //const xScale = d3.scaleLinear(xDomain, [200,1800]);
+    //const yScale = d3.scaleLinear(yDomain, [0,1200]);
+    const xScale = d3.scaleLinear([0,1], [0,1]);
+    const yScale = d3.scaleLinear([0,1], [0,1]);
 
-    const subcat2section = {};
-    data.forEach(x => {
-        subcat2section[x.section] = x.category;
-    })
-    console.log(subcat2section);
+    function getWidth(d) {
+        const npx = `${d.scale/10*80}px`;
 
-    const sections = [];
-    new Set(d3.map(data, d=>d.section)).forEach(x =>
-        sections.push(
-        {
-            title: x,
-            id: x.split(' ')[0].toLowerCase()
-        }
-        )
-    );
+        // if the width is 200px then the widthCache breaks
+        if (npx === '200px')
+            return '200.5px';
 
-    let sectionDivs = d3.select("#map")
-        .selectAll('div')
-        .data(sections)
-        .enter()
-        .append('div');
+        return npx;
+    }
 
-    let sectionDivs2 = d3.select("#map")
-        .selectAll('div')
-        .data(sections)
-        .enter()
-        .append('div');
-
-    sectionDivs
-        .append('div')
-        .classed('category-heading', true)
-        .html(d => d.title);
-
-    sectionDivs
-        .append('div')
-        .classed('category', true)
-        .attr('id', d => d.id);
-
-    console.table(data);
-    console.log(data);
-
-    const gridSlots = d3.select("#map")
+    const divs = d3.select("#map")
+        .selectAll("div")
         .data(data)
         .enter()
         .append('div')
-        .classed('grid-slot', true)
-
-    console.log(gridSlots);
-
-    const divs = gridSlots
-        .append('div')
         .classed('map-item', true)
         .on('mouseover', function(d){
-            d3.select(this).classed('hovered', true)
+            const item = d3.select(this)
+            const width = item.style('width');
+
+            // a separate mouseover event occurs after the 
+            // size change which we want to ignore
+            if (width === '200px') return;
+
+            const leftShift = (200 - parseInt(width))/2;
+
+            console.log(item.style('left'))
+
+            widthCache = width;
+
+            item
+                .classed('hovered', true)
+                .style('width', '200px')
+                .style('left', parseInt(item.style('left'))-leftShift + 'px')
         })
         .on('mouseleave', function(d){
-            d3.select(this).classed('hovered', false)
+            const leftShift = (200 - parseInt(widthCache))/2;
+            const item = d3.select(this)
+            item
+                .classed('hovered', false)
+                .style('width', widthCache)
+                .style('left', parseInt(item.style('left'))+leftShift + 'px')
         })
+        .style('position', 'absolute')
+        .style('top', d => `${yScale(d.y)}px`)
+        .style('left', d => `${xScale(d.x)}px`)
+        .style('width', d => `${Math.max(Math.sqrt(d.scale/10)*80,30)}px`)
+        .style('font-size', d => `${d.scale/12}em`)
+        .style('font-size', d => `${Math.max(Math.sqrt(d.scale/10)*10,5)}px`)
+        .attr('id', d => d.id)
+
+    divs
+        .filter(d => d.y > 880)
+        .classed('low-item', true)
 
     const anchors = divs
         .append('a')
@@ -88,6 +89,8 @@ d3.csv(sheetUrl).then(function(data) {
     const details = anchors
         .append('div')
         .classed('details', true)
+        .style('padding', d => `${Math.max(d.scale/10*10,2)}px`)
+        .style('border-radius', d => `${Math.max(d.scale/10*10,2)}px`)
 
     details
         .append('div')
@@ -112,9 +115,22 @@ d3.csv(sheetUrl).then(function(data) {
         .html(d => d.Description);
 
 
-    for (let section of sections) {
-        sectionDivs = gridSlots.filter(d => d.section === section.title);
-        $( sectionDivs.nodes() ).appendTo( $(`#${section.id}`) );
-    }
+});
 
+function logPositions() {
+    const x = []
+    const y = []
+    d3.selectAll('.map-item').each(function() {
+        y.push(d3.style(this, 'top').replace('px',''))
+        x.push(d3.style(this, 'left').replace('px',''))
+    });
+    console.log('x positions\n')
+    console.log(x.join('\n'));
+    console.log('y positions\n')
+    console.log(y.join('\n'));
+}
+document.addEventListener('keydown', function(event) {
+    if (event.key === ' ') {
+        logPositions()
+    }
 });
