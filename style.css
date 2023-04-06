@@ -135,6 +135,12 @@ a {
     font-size: 15px;
 }
 
+.description a {
+    text-decoration-line: underline;
+    text-decoration-color: green;
+    color: green;
+}
+
 .hovered .description {
     display: block;
 }
