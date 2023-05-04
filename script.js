@@ -10,7 +10,7 @@ const gridHeight = (maxYCoord + 1) * gridSize;
 const xOffset = (viewportWidthInGridWidths / 2 - 30) * gridSize;
 
 const zoom = d3.zoom()
-  .scaleExtent([0.1, 10])
+  .scaleExtent([0.8, 3])
   .on('zoom', zoomed);
 
 const svg = d3.select('#grid')
