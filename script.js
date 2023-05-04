@@ -1,6 +1,7 @@
 const viewportWidth = window.innerWidth;
 const viewportHeight = window.innerHeight;
-const viewportWidthInGridWidths = 21;
+const viewportRatio = viewportHeight / viewportWidth;
+const viewportWidthInGridWidths = viewportRatio > 1 ? 21 : 59;
 const gridSize = viewportWidth / viewportWidthInGridWidths;
 const maxXCoord = 59;
 const maxYCoord = 37;
