@@ -108,24 +108,29 @@ function drawSquare(row) {
   const itemGroup = svg.append('g')
     .attr('transform', `translate(${xPos}, ${yPos})`);
 
+  const wrapperGroup = itemGroup.append('g')
+    .attr('class', 'wrapperGroup');
+  
+  // Add the hover effect to the wrapper instead of the content
+  wrapperGroup.on('mouseover', function (event, row) {
+    tooltip
+      .style('left', (event.pageX + 10) + 'px')
+      .style('top', (event.pageY + 10) + 'px')
+      .html(`<strong>${longLabel}</strong><br>${description}`)
+      .classed('hidden', false);
+  })
+  .on('mouseout', function () {
+    tooltip.classed('hidden', true);
+  });
+  
+  // Create a group for the logo and label, and apply hover effect to it
+  const contentGroup = wrapperGroup.append('g')
+    .attr('class', 'mapItem');
+
   // Create a link
   const itemLink = itemGroup.append('a')
     .attr('href', link)
     .attr('target', '_blank');
-
-  // Create a group for the logo and label, and apply hover effect to it
-  const contentGroup = itemLink.append('g')
-    .attr('class', 'mapItem')
-    .on('mouseover', function (event, row) {
-    tooltip
-    .style('left', (event.pageX + 10) + 'px')
-    .style('top', (event.pageY + 10) + 'px')
-    .html(`<strong>${longLabel}</strong><br>${description}`)
-    .classed('hidden', false);
-    })
-    .on('mouseout', function () {
-    tooltip.classed('hidden', true);
-    });
 
   // Add the image
   contentGroup.append('image')
@@ -137,7 +142,7 @@ function drawSquare(row) {
 
   // Add the label
   const labelText = label;
-  const labelMaxWidth = gridSize * scale * 1.8;
+  const labelMaxWidth = gridSize * scale * 1.9;
   const fontsize = gridSize * scale * 0.3;
 
   contentGroup.append('foreignObject')
@@ -145,7 +150,7 @@ function drawSquare(row) {
     .attr('y', gridSize * scale + 5)
     .attr('width', labelMaxWidth)
     .attr('font-size', fontsize)
-    .attr('height', 30)
+    .attr('height', 40)
     .append('xhtml:div')
     .attr('class', 'labelContainer')
     .text(labelText);
