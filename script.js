@@ -104,15 +104,85 @@ function drawSquare(row) {
   const xPos = x * gridSize + xOffset;
   const yPos = y * gridSize;
 
-  // Create a group for the logo, label, and link
-  const itemGroup = svg.append('g')
-    .attr('transform', `translate(${xPos}, ${yPos})`);
 
-  const wrapperGroup = itemGroup.append('g')
-    .attr('class', 'wrapperGroup');
-  
-  // Add the hover effect to the wrapper instead of the content
-  wrapperGroup.on('mouseover', function (event, row) {
+
+
+const itemGroup = svg.append('g')
+  .attr('transform', `translate(${xPos}, ${yPos})`);
+
+  const divs = itemGroup.append('foreignObject')
+        .classed('grid-slot', true)
+        .append('div')
+        .classed('map-item', true)
+        .on('mouseover', function(d){
+            d3.select(this).classed('hovered', true)
+        })
+        .on('mouseleave', function(d){
+            d3.select(this).classed('hovered', false)
+        })
+
+    const anchors = divs
+        .append('a')
+            .attr('href', d => link)
+            .attr('target', '_blank')
+
+    const details = anchors
+        .append('div')
+        .classed('details', true)
+
+    details
+        .append('div')
+        .classed('logo-div', true)
+        .append('img')
+		.attr('x', 0)
+		.attr('y', 0)
+		.attr('width', gridSize * scale)
+		.attr('height', gridSize * scale)
+        .attr('src', d => logo);
+
+
+    details
+        .append('div')
+        .classed('short-label', true)
+        .html(d => label);
+
+    details
+        .append('div')
+        .classed('long-label', true)
+        .html(d => longLabel);
+
+    details
+        .append('div')
+        .classed('description', true)
+        .html(d => description);
+
+}
+
+
+
+/*
+// Create a group for the logo, label, and link
+const itemGroup = svg.append('g')
+  .attr('transform', `translate(${xPos}, ${yPos})`);
+
+// Create a link
+const itemLink = itemGroup.append('a')
+  .attr('href', link)
+  .attr('target', '_blank');
+
+// Create a group for the logo and label, and apply hover effect to it
+const contentGroup = itemLink.append('g')
+  .attr('class', 'mapItem');
+
+// Timer variable to control the delay
+let timer;
+
+contentGroup
+  .on('mouseover', function () {
+    if (expandTimer) {
+      expandTimer.stop();
+    }
+    d3.select(this).classed('expanded', true);
     tooltip
       .style('left', (event.pageX + 10) + 'px')
       .style('top', (event.pageY + 10) + 'px')
@@ -120,17 +190,28 @@ function drawSquare(row) {
       .classed('hidden', false);
   })
   .on('mouseout', function () {
-    tooltip.classed('hidden', true);
+    const element = d3.select(this); // Reference to the current element
+    expandTimer = d3.timer(function (elapsed) {
+      if (elapsed > 300) { // delay in milliseconds
+        element.classed('expanded', false);
+        tooltip.classed('hidden', true);
+        expandTimer.stop();
+      }
+    });
   });
-  
-  // Create a group for the logo and label, and apply hover effect to it
-  const contentGroup = wrapperGroup.append('g')
-    .attr('class', 'mapItem');
 
-  // Create a link
-  const itemLink = itemGroup.append('a')
-    .attr('href', link)
-    .attr('target', '_blank');
+contentGroup
+  .on('mouseover', function (event, row) {
+  })
+  .on('mouseout', function () {
+    timer = d3.timer(function (elapsed) {
+      if (elapsed > 300) { // delay in milliseconds
+        timer.stop();
+      }
+    });
+  });
+
+  
 
   // Add the image
   contentGroup.append('image')
@@ -156,6 +237,7 @@ function drawSquare(row) {
     .text(labelText);
 
 }
+*/
 
 function setMapItemOrigins() {
     // Set transform-origin dynamically for each square
