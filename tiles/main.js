@@ -1,4 +1,4 @@
-const sheetUrl = 'https://docs.google.com/spreadsheets/d/16CjyorSwrzVsMXtdHecuu-C6HWVYqjJbgwG0p3ZFlWg/export?format=csv&gid=1173866196&single=true&output=csv'
+const sheetUrl = 'https://docs.google.com/spreadsheets/d/16CjyorSwrzVsMXtdHecuu-C6HWVYqjJbgwG0p3ZFlWg/export?format=csv&gid=1371825706&single=true&output=csv'
 console.log(sheetUrl);
 
 d3.csv(sheetUrl).then(function(data) {
@@ -21,18 +21,12 @@ d3.csv(sheetUrl).then(function(data) {
     const xScale = d3.scaleLinear(xDomain, [5,80]);
     const yScale = d3.scaleLinear(yDomain, [10,90]);
 
-    const subcat2section = {};
-    data.forEach(x => {
-        subcat2section[x.section] = x.category;
-    })
-    console.log(subcat2section);
-
     const sections = [];
-    new Set(d3.map(data, d=>d.section)).forEach(x =>
+    new Set(d3.map(data, d=>d.tags)).forEach(x =>
         sections.push(
         {
             title: x,
-            id: x.split(' ')[0].toLowerCase()
+            id: x.replace(/ /g, "-")
         }
         )
     );
@@ -113,7 +107,7 @@ d3.csv(sheetUrl).then(function(data) {
 
 
     for (let section of sections) {
-        sectionDivs = gridSlots.filter(d => d.section === section.title);
+        sectionDivs = gridSlots.filter(d => d.tags === section.title);
         $( sectionDivs.nodes() ).appendTo( $(`#${section.id}`) );
     }
 
