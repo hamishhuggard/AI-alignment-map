@@ -137,7 +137,7 @@ function drawSquare(row) {
 
   // Add the label
   const labelText = label;
-  const labelMaxWidth = gridSize * scale * 1.8;
+  const labelMaxWidth = gridSize * scale * 2;
   const fontsize = gridSize * scale * 0.3;
 
   contentGroup.append('foreignObject')
