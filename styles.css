@@ -54,7 +54,7 @@ body {
 #tooltip {
   position: absolute;
   pointer-events: none;
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.95);
   border: 1px solid #8b4513;
   border-radius: 5px;
   padding: 10px;
