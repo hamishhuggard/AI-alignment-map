@@ -24,38 +24,14 @@ const xOffset = (viewportWidthInGridWidths / 2 - 30) * gridSize;
   // Add background image
   svg.append('image')
     .attr('xlink:href', await (async () => {
-      if (await supportsImageType('image/avif')) return '/background.avif';
-      else if (await supportsImageType('image/webp')) return '/background.webp';
+      if (await isImageTypeSupported('image/avif')) return '/background.avif';
+      else if (await isImageTypeSupported('image/webp')) return '/background.webp';
       else return '/background.jpg';
     })())
     .attr('x', xOffset)
     .attr('y', 0)
     .attr('width', 60 * gridSize)
     .attr('height', 1950 / 3104 * 60 * gridSize);
-
-  /**
-   * 
-   * @param {string} type
-   * @returns {Promise<boolean>}
-   */
-  async function supportsImageType(type) {
-    // Create this:
-    //
-    // <picture>
-    //   <source srcset="data:,x" type="{type}" />
-    //   <img />
-    // </picture>
-    const img = document.createElement('img');
-    document.createElement('picture').append(
-      Object.assign(document.createElement('source'), {
-        srcset: 'data:,x', // Minimal valid URL
-        type
-      }),
-      img
-    );
-    await 0; // Wait for img.currentSrc to be populated if format is supported
-    return !!img.currentSrc;
-  }
 
   const gridGroup = svg.append('g')
     .attr('transform', `translate(${xOffset}, 0)`);
@@ -191,3 +167,27 @@ const xOffset = (viewportWidthInGridWidths / 2 - 30) * gridSize;
       });
   }
 })();
+
+/**
+ * 
+ * @param {string} mimeType
+ * @returns {Promise<boolean>}
+ */
+async function isImageTypeSupported(mimeType) {
+  // Create this:
+  //
+  // <picture>
+  //   <source srcset="data:,x" type="{type}" />
+  //   <img />
+  // </picture>
+  const img = document.createElement('img');
+  document.createElement('picture').append(
+    Object.assign(document.createElement('source'), {
+      srcset: 'data:,x', // Minimal valid URL
+      type: mimeType
+    }),
+    img
+  );
+  await 0; // Wait for img.currentSrc to be populated if format is supported
+  return !!img.currentSrc;
+}
