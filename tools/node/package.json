@@ -1,0 +1,14 @@
+{
+    "name": "ai-alignment-map",
+    "version": "1.0.0",
+    "scripts": {
+        "start": "tsx process-images.ts"
+    },
+    "devDependencies": {
+        "@types/node": "^20.11.25"
+    },
+    "dependencies": {
+        "magickwand.js": "^1.0.2",
+        "tsx": "^4.7.1"
+    }
+}
