@@ -22,9 +22,10 @@ const xOffset = (viewportWidthInGridWidths / 2 - 30) * gridSize;
     .append('g');
 
   // Add background image
+  const avifIsSupported = await isImageTypeSupported('image/avif')
   svg.append('image')
     .attr('xlink:href', await (async () => {
-      if (await isImageTypeSupported('image/avif')) return '/background.avif';
+      if (avifIsSupported) return '/background.avif';
       else if (await isImageTypeSupported('image/webp')) return '/background.webp';
       else return '/background.jpg';
     })())
@@ -81,6 +82,8 @@ const xOffset = (viewportWidthInGridWidths / 2 - 30) * gridSize;
   drawGrid();
   grid();
 
+  // Load processed image formats
+  const processedImageFormats = await (await fetch('/logos/processed-formats.json')).json()
 
   // Read CSV data and place a red square at the grid coordinates
   d3.csv('https://docs.google.com/spreadsheets/d/16CjyorSwrzVsMXtdHecuu-C6HWVYqjJbgwG0p3ZFlWg/export?format=csv&gid=1371825706&single=true&output=csv')
@@ -99,7 +102,7 @@ const xOffset = (viewportWidthInGridWidths / 2 - 30) * gridSize;
     const x = +row.x;
     const y = +row.y;
     const scale = +row.scale || 1;
-    const logo = row.logo;
+    let logo = row.logo;
     const label = row.Label;
     const link = row.Link;
     const longLabel = row.LongLabel;
@@ -131,6 +134,14 @@ const xOffset = (viewportWidthInGridWidths / 2 - 30) * gridSize;
       .on('mouseout', function () {
         tooltip.classed('hidden', true);
       });
+
+    // Replace logo URL with processed version
+    const PREFIX = '/logos/'
+    const extension = '.' + logo.split('.').pop()
+    if (avifIsSupported && logo.startsWith(PREFIX) && processedImageFormats.includes(extension)) {
+      const name = logo.substring(PREFIX.length, logo.length - extension.length)
+      logo = `${PREFIX}avif/${name}.avif`
+    }
 
     // Add the image
     contentGroup.append('image')
