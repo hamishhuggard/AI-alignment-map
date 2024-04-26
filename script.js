@@ -9,11 +9,11 @@ const gridWidth = (maxXCoord + 1) * gridSize;
 const gridHeight = (maxYCoord + 1) * gridSize;
 const xOffset = (viewportWidthInGridWidths / 2 - 30) * gridSize;
 
-  function grid() {
-    const gridGroup = document.getElementById('gridGroup');
-    const gridVisible = gridGroup.style('display') !== 'none';
-    gridGroup.style('display', gridVisible ? 'none' : '');
-  }
+function grid() {
+  const gridGroup = d3.select('#gridGroup');
+  const gridVisible = gridGroup.style('display') !== 'none';
+  gridGroup.style('display', gridVisible ? 'none' : '');
+}
 
 (async () => {
   const zoom = d3.zoom()
@@ -84,6 +84,7 @@ const xOffset = (viewportWidthInGridWidths / 2 - 30) * gridSize;
 
 
   drawGrid();
+  grid();
 
   // Load processed image formats
   const processedImageFormats = await (await fetch('/logos/processed-formats.json')).json()
