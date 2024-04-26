@@ -9,6 +9,12 @@ const gridWidth = (maxXCoord + 1) * gridSize;
 const gridHeight = (maxYCoord + 1) * gridSize;
 const xOffset = (viewportWidthInGridWidths / 2 - 30) * gridSize;
 
+  function grid() {
+    const gridGroup = document.getElementById('gridGroup');
+    const gridVisible = gridGroup.style('display') !== 'none';
+    gridGroup.style('display', gridVisible ? 'none' : '');
+  }
+
 (async () => {
   const zoom = d3.zoom()
     .scaleExtent([0.8, 3])
@@ -35,7 +41,8 @@ const xOffset = (viewportWidthInGridWidths / 2 - 30) * gridSize;
     .attr('height', 1950 / 3104 * 60 * gridSize);
 
   const gridGroup = svg.append('g')
-    .attr('transform', `translate(${xOffset}, 0)`);
+    .attr('transform', `translate(${xOffset}, 0)`)
+    .attr('id', 'gridGroup');
 
   function drawGrid() {
     const rangeX = d3.range(0, gridWidth, gridSize);
@@ -74,13 +81,9 @@ const xOffset = (viewportWidthInGridWidths / 2 - 30) * gridSize;
     svg.attr('transform', event.transform);
   }
 
-  function grid() {
-    const gridVisible = gridGroup.style('display') !== 'none';
-    gridGroup.style('display', gridVisible ? 'none' : '');
-  }
+
 
   drawGrid();
-  grid();
 
   // Load processed image formats
   const processedImageFormats = await (await fetch('/logos/processed-formats.json')).json()
