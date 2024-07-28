@@ -148,26 +148,41 @@ function grid() {
     }
 
     // Add the image
+    /*
     contentGroup.append('image')
       .attr('x', 0)
       .attr('y', 0)
       .attr('width', gridSize * scale)
       .attr('height', gridSize * scale)
       .attr('xlink:href', logo);
+  */
 
     // Add the label
     const labelText = label;
     const labelMaxWidth = gridSize * scale * 2;
     const fontsize = gridSize * scale * 0.3;
 
-    contentGroup.append('foreignObject')
+    const itemContainer = contentGroup.append('foreignObject')
       .attr('x', gridSize * scale / 2 - labelMaxWidth / 2)
-      .attr('y', gridSize * scale + 5)
+      .attr('y', 0)
       .attr('width', labelMaxWidth)
       .attr('font-size', fontsize)
-      .attr('height', 30)
-      .append('xhtml:div')
+      .attr('height', gridSize * scale + 5 + 30);
+
+    const outerDiv = itemContainer.append('xhtml:div')
+      //.attr('class', 'outerDiv')
+      .style('display', 'flex') 
       .attr('class', 'labelContainer')
+      .style('align-items', 'center');
+
+    outerDiv.append('xhtml:img')
+      //.attr('src', 'your-image-url.jpg')
+      .attr('alt', 'Image description')
+      .attr('src', logo)
+      .attr('width', gridSize * scale)
+      .attr('height', gridSize * scale);
+
+    outerDiv.append('xhtml:div')
       .text(labelText);
 
   }
