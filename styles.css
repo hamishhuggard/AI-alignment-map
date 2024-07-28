@@ -83,3 +83,28 @@ body {
 #tiles-mode:hover {
     font-size: 1.5em;
 }
+
+#info-box {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 20px;
+    width: 200px;
+    max-width: 10%;
+}
+
+#credits {
+    font-size: small;
+}
+
+#tiles-mode {
+    color: #00cc00;
+    text-decoration-line: underline;
+    font-weight: bold;
+}
+
+#tiles-mode:hover {
+    font-size: 1.5em;
+}
