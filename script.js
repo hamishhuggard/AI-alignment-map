@@ -166,8 +166,7 @@ function grid() {
     outerDiv.append('xhtml:img')
       .attr('alt', 'Image description')
       .attr('src', logo)
-      .attr('style', `max-width: ${labelMaxWidth-5}px`)
-      .attr('height', gridSize * scale);
+      .attr('style', `max-width: ${labelMaxWidth*0.9}px; max-height: ${labelMaxWidth*0.5}px`);
 
     outerDiv.append('xhtml:div')
       .text(labelText);
