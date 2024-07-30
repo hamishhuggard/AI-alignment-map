@@ -147,16 +147,6 @@ function grid() {
       logo = `${PREFIX}avif/${name}.avif`
     }
 
-    // Add the image
-    /*
-    contentGroup.append('image')
-      .attr('x', 0)
-      .attr('y', 0)
-      .attr('width', gridSize * scale)
-      .attr('height', gridSize * scale)
-      .attr('xlink:href', logo);
-  */
-
     // Add the label
     const labelText = label;
     const labelMaxWidth = gridSize * scale * 2;
@@ -170,16 +160,13 @@ function grid() {
       .attr('height', gridSize * scale + 5 + 30);
 
     const outerDiv = itemContainer.append('xhtml:div')
-      //.attr('class', 'outerDiv')
-      .style('display', 'flex') 
       .attr('class', 'labelContainer')
       .style('align-items', 'center');
 
     outerDiv.append('xhtml:img')
-      //.attr('src', 'your-image-url.jpg')
       .attr('alt', 'Image description')
       .attr('src', logo)
-      .attr('width', gridSize * scale)
+      .attr('style', `max-width: ${labelMaxWidth-5}px`)
       .attr('height', gridSize * scale);
 
     outerDiv.append('xhtml:div')

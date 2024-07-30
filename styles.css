@@ -32,6 +32,8 @@ body {
 }
 
 .labelContainer {
+  display: flex;
+  flex-direction: column;
   stroke: white;
   stroke-width: 2px;
   font-weight: bold;
