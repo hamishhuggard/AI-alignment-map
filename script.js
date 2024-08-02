@@ -58,6 +58,29 @@ function updateInfoBox(data) {
     .attr('height', backgroundHeight * secondBackgroundScale)
     .attr('class', 'blurred-background');
 
+  // First blurred background
+  svg.append('image')
+    .attr('xlink:href', backgroundImageUrl)
+    .attr('x', xOffset)
+    .attr('y', 0)
+    .attr('width', backgroundWidth)
+    .attr('height', backgroundHeight)
+    .attr('class', 'first-blurred-background');
+  svg.append('image')
+    .attr('xlink:href', backgroundImageUrl)
+    .attr('x', xOffset)
+    .attr('y', 0)
+    .attr('width', backgroundWidth)
+    .attr('height', backgroundHeight)
+    .attr('class', 'first-blurred-background');
+  svg.append('image')
+    .attr('xlink:href', backgroundImageUrl)
+    .attr('x', xOffset)
+    .attr('y', 0)
+    .attr('width', backgroundWidth)
+    .attr('height', backgroundHeight)
+    .attr('class', 'first-blurred-background');
+
   // Main background image
   svg.append('image')
     .attr('xlink:href', backgroundImageUrl)

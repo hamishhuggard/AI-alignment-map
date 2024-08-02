@@ -124,8 +124,14 @@ body {
 #tiles-mode:hover {
     font-size: 1.5em;
 }
+
+.first-blurred-background {
+    filter: blur(20px);
+    z-index: -1;
+}
+
 .blurred-background {
-    filter: blur(25px); /* Apply blur effect */
-    transform: scale(1.1); /* Slightly enlarge for better effect */
-    z-index: -1; /* Ensure it stays behind other elements */
+    filter: blur(45px);
+    transform: scale(1.1);
+    z-index: -2;
 }
