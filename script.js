@@ -231,3 +231,21 @@ function updateInfoBox(data) {
  * @param {string} mimeType
  * @returns {Promise<boolean>}
  */
+async function isImageTypeSupported(mimeType) {
+  // Create this:
+  //
+  // <picture>
+  //   <source srcset="data:,x" type="{type}" />
+  //   <img />
+  // </picture>
+  const img = document.createElement('img');
+  document.createElement('picture').append(
+    Object.assign(document.createElement('source'), {
+      srcset: 'data:,x', // Minimal valid URL
+      type: mimeType
+    }),
+    img
+  );
+  await 0; // Wait for img.currentSrc to be populated if format is supported
+  return !!img.currentSrc;
+}
