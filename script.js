@@ -15,6 +15,13 @@ function grid() {
   gridGroup.style('display', gridVisible ? 'none' : '');
 }
 
+function updateInfoBox(data) {
+  const infoBoxRow = data.find(row => row.LongLabel === 'Infobox');
+  if (infoBoxRow && infoBoxRow.Description) {
+    d3.select('#info-box').html(infoBoxRow.Description);
+  }
+}
+
 (async () => {
   const zoom = d3.zoom()
     .scaleExtent([0.8, 3])
@@ -89,9 +96,11 @@ function grid() {
   // Load processed image formats
   const processedImageFormats = await (await fetch('/logos/processed-formats.json')).json()
 
+
   // Read CSV data and place a red square at the grid coordinates
   d3.csv('https://docs.google.com/spreadsheets/d/16CjyorSwrzVsMXtdHecuu-C6HWVYqjJbgwG0p3ZFlWg/export?format=csv&gid=1371825706&single=true&output=csv')
     .then(data => {
+      updateInfoBox(data); // Add this line
       data.forEach(drawSquare);
       setMapItemOrigins();
     });

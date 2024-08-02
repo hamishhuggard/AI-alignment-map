@@ -93,9 +93,23 @@ body {
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 15px;
     padding: 20px;
-    width: 200px;
-    max-width: 10%;
+    width: 220px;
+    max-width: 30%;
+    font-size: small;
+    font-family: "Courier New", Courier, monospace; 
 }
+
+#info-box a {
+    color: #00cc00;
+    /* text-decoration: none; */
+    font-weight: bold;
+}
+
+#info-box a:hover {
+     font-weight: bolder;
+     color: #009900;
+}
+
 
 #credits {
     font-size: small;
