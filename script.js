@@ -26,7 +26,7 @@ function updateInfoBox(data) {
 
 (async () => {
   const zoom = d3.zoom()
-    .scaleExtent([0.8, 3])
+    .scaleExtent([0.8, 5])
     .on('zoom', zoomed);
 
   const svg = d3.select('#grid')
@@ -47,38 +47,24 @@ function updateInfoBox(data) {
   const backgroundWidth = 60 * gridSize;
   const backgroundHeight = (1950 / 3104) * 60 * gridSize;
 
-  const secondBackgroundScale = 1.25;
+  const secondBackgroundScale = 1.5;
   
+  // Blurred background image
   svg.append('image')
     .attr('xlink:href', backgroundImageUrl)
-    .attr('x', xOffset) // - backgroundWidth * 0.5) // Center the blurred image
-    .attr('y', -backgroundHeight * (secondBackgroundScale-1)/2) // Center the blurred image
-    .attr('width', backgroundWidth * secondBackgroundScale) // Make the blurred image larger
-    .attr('height', backgroundHeight * secondBackgroundScale) // Make the blurred image larger
-    .attr('class', 'blurred-background'); // Add a class for styling
+    .attr('x', 19*xOffset)
+    .attr('y', -backgroundHeight * (secondBackgroundScale-1)*0.8)
+    .attr('width', backgroundWidth * secondBackgroundScale)
+    .attr('height', backgroundHeight * secondBackgroundScale)
+    .attr('class', 'blurred-background');
 
-  // Add main background image
+  // Main background image
   svg.append('image')
     .attr('xlink:href', backgroundImageUrl)
     .attr('x', xOffset)
     .attr('y', 0)
     .attr('width', backgroundWidth)
     .attr('height', backgroundHeight);
-
-  /*
-  // Add background image
-  const avifIsSupported = await isImageTypeSupported('image/avif')
-  svg.append('image')
-    .attr('xlink:href', await (async () => {
-      if (avifIsSupported) return '/background.avif';
-      else if (await isImageTypeSupported('image/webp')) return '/background.webp';
-      else return '/background.jpg';
-    })())
-    .attr('x', xOffset)
-    .attr('y', 0)
-    .attr('width', 60 * gridSize)
-    .attr('height', 1950 / 3104 * 60 * gridSize);
-    */
 
   const gridGroup = svg.append('g')
     .attr('transform', `translate(${xOffset}, 0)`)
