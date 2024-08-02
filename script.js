@@ -1,4 +1,3 @@
-import { CSV_URL } from './config.js';
 const viewportWidth = window.innerWidth;
 const viewportHeight = window.innerHeight;
 const viewportRatio = viewportHeight / viewportWidth;
@@ -9,6 +8,8 @@ const maxYCoord = 37;
 const gridWidth = (maxXCoord + 1) * gridSize;
 const gridHeight = (maxYCoord + 1) * gridSize;
 const xOffset = (viewportWidthInGridWidths / 2 - 30) * gridSize;
+
+const CSV_URL = 'https://docs.google.com/spreadsheets/d/16CjyorSwrzVsMXtdHecuu-C6HWVYqjJbgwG0p3ZFlWg/export?format=csv&gid=1371825706&single=true&output=csv'
 
 function grid() {
   const gridGroup = d3.select('#gridGroup');
@@ -230,21 +231,3 @@ function updateInfoBox(data) {
  * @param {string} mimeType
  * @returns {Promise<boolean>}
  */
-async function isImageTypeSupported(mimeType) {
-  // Create this:
-  //
-  // <picture>
-  //   <source srcset="data:,x" type="{type}" />
-  //   <img />
-  // </picture>
-  const img = document.createElement('img');
-  document.createElement('picture').append(
-    Object.assign(document.createElement('source'), {
-      srcset: 'data:,x', // Minimal valid URL
-      type: mimeType
-    }),
-    img
-  );
-  await 0; // Wait for img.currentSrc to be populated if format is supported
-  return !!img.currentSrc;
-}
