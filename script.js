@@ -34,6 +34,36 @@ function updateInfoBox(data) {
     .call(zoom)
     .append('g');
 
+  // Add blurred background image
+  const avifIsSupported = await isImageTypeSupported('image/avif');
+  const backgroundImageUrl = await (async () => {
+    if (avifIsSupported) return '/background.avif';
+    else if (await isImageTypeSupported('image/webp')) return '/background.webp';
+    else return '/background.jpg';
+  })();
+
+  const backgroundWidth = 60 * gridSize;
+  const backgroundHeight = (1950 / 3104) * 60 * gridSize;
+
+  const secondBackgroundScale = 1.25;
+  
+  svg.append('image')
+    .attr('xlink:href', backgroundImageUrl)
+    .attr('x', xOffset) // - backgroundWidth * 0.5) // Center the blurred image
+    .attr('y', -backgroundHeight * (secondBackgroundScale-1)/2) // Center the blurred image
+    .attr('width', backgroundWidth * secondBackgroundScale) // Make the blurred image larger
+    .attr('height', backgroundHeight * secondBackgroundScale) // Make the blurred image larger
+    .attr('class', 'blurred-background'); // Add a class for styling
+
+  // Add main background image
+  svg.append('image')
+    .attr('xlink:href', backgroundImageUrl)
+    .attr('x', xOffset)
+    .attr('y', 0)
+    .attr('width', backgroundWidth)
+    .attr('height', backgroundHeight);
+
+  /*
   // Add background image
   const avifIsSupported = await isImageTypeSupported('image/avif')
   svg.append('image')
@@ -46,6 +76,7 @@ function updateInfoBox(data) {
     .attr('y', 0)
     .attr('width', 60 * gridSize)
     .attr('height', 1950 / 3104 * 60 * gridSize);
+    */
 
   const gridGroup = svg.append('g')
     .attr('transform', `translate(${xOffset}, 0)`)
