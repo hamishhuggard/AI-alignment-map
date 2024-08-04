@@ -258,3 +258,9 @@ async function isImageTypeSupported(mimeType) {
   await 0; // Wait for img.currentSrc to be populated if format is supported
   return !!img.currentSrc;
 }
+
+window.addEventListener('resize', () => {
+  d3.select('#grid svg')
+    .attr('width', window.innerWidth)
+    .attr('height', window.innerHeight);
+});
