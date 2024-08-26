@@ -156,7 +156,7 @@ function updateInfoBox(data) {
 
     const x = +row.x;
     const y = +row.y;
-    const scale = (+row.scale || 1) * 0.55;
+    const scale = (+row.scale || 1) * 0.60;
     let logo = row.logo;
     const label = row.Label;
     const link = row.Link;
