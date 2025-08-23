@@ -4,7 +4,7 @@ A map of organisations, researchers, funders, and trainers in the AI safety land
 
 This was created by Hamish Huggard as a comission for Nonlinear.
 
-![preview](preview)
+![preview.png](preview.png)
 
 Live at: https://hamishhuggard.github.io/AI-alignment-map/
 
