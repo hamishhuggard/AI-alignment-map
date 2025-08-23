@@ -39,8 +39,8 @@ function updateInfoBox(data) {
   // Add blurred background image
   const avifIsSupported = await isImageTypeSupported('image/avif');
   const backgroundImageUrl = await (async () => {
-    if (avifIsSupported) return '/background.avif';
-    else if (await isImageTypeSupported('image/webp')) return '/background.webp';
+    if (avifIsSupported) return 'background.avif';
+    else if (await isImageTypeSupported('image/webp')) return 'background.webp';
     else return '/background.jpg';
   })();
 
@@ -136,7 +136,7 @@ function updateInfoBox(data) {
   grid();
 
   // Load processed image formats
-  const processedImageFormats = await (await fetch('/logos/processed-formats.json')).json()
+  const processedImageFormats = await (await fetch('logos/processed-formats.json')).json()
 
 
   // Read CSV data and place a red square at the grid coordinates
@@ -191,7 +191,7 @@ function updateInfoBox(data) {
       });
 
     // Replace logo URL with processed version
-    const PREFIX = '/logos/'
+    const PREFIX = 'logos/'
     const extension = '.' + logo.split('.').pop()
     if (avifIsSupported && logo.startsWith(PREFIX) && processedImageFormats.includes(extension)) {
       const name = logo.substring(PREFIX.length, logo.length - extension.length)
